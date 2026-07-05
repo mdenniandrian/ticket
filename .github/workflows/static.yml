@@ -21,6 +21,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -30,25 +31,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Project
-        run: npm run build
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Arahkan ke folder hasil build Vite (biasanya 'dist')
-          path: './dist'
+          # Karena file index.html langsung ada di root luar, upload seluruh root ('.')
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
