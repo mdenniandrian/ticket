@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generate formatted ticket layouts for developers, support, and QA teams with live preview and custom templates.">
+  <title>FlexiTicket Studio | Premium Ticket Generator SPA</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden" role="alert" aria-live="assertive">
+    <div id="toast-icon-container">
+      <i data-lucide="check-circle-2" class="toast-icon"></i>
+    </div>
+    <span id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="logo-wrapper">
+        <i data-lucide="ticket" class="logo-icon"></i>
+      </div>
+      <div>
+        <h1>MaxTicket <span class="accent-text">Generator</span></h1>
+        <p class="subtitle">MaksimalTemplate, Minimalisasi Ribet</p>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <button id="btn-theme-toggle" class="btn btn-icon-only" aria-label="Toggle dark/light theme">
+        <i data-lucide="sun" class="icon-sun"></i>
+        <i data-lucide="moon" class="icon-moon"></i>
+      </button>
+      <button id="btn-new-template" class="btn btn-secondary">
+        <i data-lucide="plus-circle"></i>
+        <span>Custom Template</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-container">
+    <!-- Left Column: Input Form -->
+    <section class="panel panel-inputs">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <i data-lucide="settings" class="panel-header-icon"></i>
+          <h2>Configure Ticket</h2>
+        </div>
+      </div>
+      
+      <div class="panel-body">
+        <!-- Template Selection Carousel/Grid -->
+        <div class="form-group">
+          <div class="label-action-row" style="margin-bottom: 0.75rem;">
+            <label class="form-label" style="margin-bottom: 0;">Select Template</label>
+            <div class="view-toggles">
+              <button type="button" id="btn-view-grid" class="btn-view-toggle active" title="Grid View">
+                <i data-lucide="layout-grid"></i>
+              </button>
+              <button type="button" id="btn-view-list" class="btn-view-toggle" title="List View">
+                <i data-lucide="list"></i>
+              </button>
+            </div>
+          </div>
+          <div id="template-selector" class="template-selector-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Dynamic Form Fields -->
+        <form id="ticket-form" class="ticket-form" novalidate>
+          <!-- Template Description Banner -->
+          <div id="template-description-banner" class="template-description-banner hidden">
+            <div class="banner-icon-wrapper">
+              <i data-lucide="info" class="banner-icon"></i>
+            </div>
+            <div class="banner-content">
+              <h4 id="banner-template-name">Template Name</h4>
+              <p id="banner-template-desc">Template description goes here...</p>
+            </div>
+          </div>
+
+          <!-- Form Progress Bar -->
+          <div id="form-progress-wrapper" class="form-progress-wrapper hidden">
+            <div class="progress-label-row">
+              <span class="progress-text">Form Completion</span>
+              <span id="progress-percentage" class="progress-percentage">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div id="dynamic-fields-container">
+            <!-- Dynamically populated based on template -->
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Right Column: Live Preview & Actions -->
+    <section class="panel panel-preview">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <i data-lucide="eye" class="panel-header-icon"></i>
+          <h2>Live Preview</h2>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button type="button" id="btn-copy" class="btn btn-primary">
+            <i data-lucide="copy"></i>
+            <span>Copy Output</span>
+          </button>
+          <button type="button" id="btn-download" class="btn btn-secondary" title="Download to file">
+            <i data-lucide="download"></i>
+          </button>
+          <button type="button" id="btn-clear" class="btn btn-secondary-danger" title="Clear Inputs">
+            <i data-lucide="rotate-ccw"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-body preview-body" style="padding: 1.5rem;">
+        <pre><code class="code-preview" id="raw-output"></code></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <p>Developed with <i data-lucide="heart" class="heart-icon"></i> by <strong>MaxTicket</strong> | Version 1.0.0</p>
+  </footer>
+
+  <!-- Modal for Creating/Editing Custom Templates -->
+  <dialog id="custom-template-modal" class="modal">
+    <div class="modal-wrapper">
+      <header class="modal-header">
+        <h3 id="modal-title">Create Custom Template</h3>
+        <button id="btn-close-modal" class="btn-close" aria-label="Close modal">&times;</button>
+      </header>
+      
+      <form id="custom-template-form" class="modal-form">
+        <div class="modal-body">
+          <div class="modal-section-title">Template Metadata</div>
+          <div class="template-metadata-card">
+            <div class="form-row" style="margin-bottom: 0;">
+              <div class="form-group flex-2" style="margin-bottom: 0;">
+                <label class="form-label" for="new-template-name">Template Name *</label>
+                <input type="text" id="new-template-name" class="form-input" required placeholder="e.g. QA Release Checklist">
+              </div>
+              <div class="form-group flex-1" style="margin-bottom: 0;">
+                <label class="form-label" for="new-template-icon">Icon (Emoji) *</label>
+                <input type="text" id="new-template-icon" class="form-input" required value="📋" maxlength="4" style="text-align: center; font-size: 1.25rem;" placeholder="📋">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0; margin-top: 1rem;">
+              <label class="form-label" for="new-template-description">Description</label>
+              <input type="text" id="new-template-description" class="form-input" placeholder="Brief explanation of this template">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="label-action-row">
+              <label class="form-label">Template Fields</label>
+              <button type="button" id="btn-add-field" class="btn btn-secondary btn-small">
+                <i data-lucide="plus"></i> Add Field
+              </button>
+            </div>
+            
+            <div id="modal-fields-list" class="modal-fields-list">
+              <!-- Dynamically populated field editors -->
+            </div>
+          </div>
+        </div>
+
+        <footer class="modal-footer">
+          <button type="button" id="btn-cancel-modal" class="btn btn-secondary">Cancel</button>
+          <button type="submit" id="btn-submit-modal" class="btn btn-primary">Save Template</button>
+        </footer>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Modal for Confirmation (Delete, Clear, etc.) -->
+  <dialog id="confirm-modal" class="modal">
+    <div class="modal-wrapper" style="max-width: 400px; margin: auto;">
+      <header class="modal-header">
+        <h3 id="confirm-modal-title">Confirm Action</h3>
+        <button id="btn-close-confirm" class="btn-close" aria-label="Close modal">&times;</button>
+      </header>
+      <div class="modal-body" style="padding: 1.5rem 1.25rem;">
+        <p id="confirm-modal-message">Are you sure you want to perform this action?</p>
+      </div>
+      <footer class="modal-footer" style="padding: 1rem 1.25rem;">
+        <button type="button" id="btn-cancel-confirm" class="btn btn-secondary btn-small">Cancel</button>
+        <button type="button" id="btn-ok-confirm" class="btn btn-danger btn-small">Confirm</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- Javascript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
