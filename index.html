@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Generate formatted ticket layouts for developers, support, and QA teams with live preview and custom templates.">
-  <title>FlexiTicket Studio | Premium Ticket Generator SPA</title>
+  <meta name="description"
+    content="Generate formatted ticket layouts for developers, support, and QA teams with live preview and custom templates.">
+  <title>MaxTicket Generator | Premium Ticket Generator SPA</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Toast Notification -->
@@ -34,7 +39,7 @@
         <p class="subtitle">MaksimalTemplate, Minimalisasi Ribet</p>
       </div>
     </div>
-    
+
     <div class="header-actions">
       <button id="btn-theme-toggle" class="btn btn-icon-only" aria-label="Toggle dark/light theme">
         <i data-lucide="sun" class="icon-sun"></i>
@@ -56,7 +61,7 @@
           <h2>Configure Ticket</h2>
         </div>
       </div>
-      
+
       <div class="panel-body">
         <!-- Template Selection Carousel/Grid -->
         <div class="form-group">
@@ -148,7 +153,7 @@
         <h3 id="modal-title">Create Custom Template</h3>
         <button id="btn-close-modal" class="btn-close" aria-label="Close modal">&times;</button>
       </header>
-      
+
       <form id="custom-template-form" class="modal-form">
         <div class="modal-body">
           <div class="modal-section-title">Template Metadata</div>
@@ -156,17 +161,20 @@
             <div class="form-row" style="margin-bottom: 0;">
               <div class="form-group flex-2" style="margin-bottom: 0;">
                 <label class="form-label" for="new-template-name">Template Name *</label>
-                <input type="text" id="new-template-name" class="form-input" required placeholder="e.g. QA Release Checklist">
+                <input type="text" id="new-template-name" class="form-input" required
+                  placeholder="e.g. QA Release Checklist">
               </div>
               <div class="form-group flex-1" style="margin-bottom: 0;">
                 <label class="form-label" for="new-template-icon">Icon (Emoji) *</label>
-                <input type="text" id="new-template-icon" class="form-input" required value="📋" maxlength="4" style="text-align: center; font-size: 1.25rem;" placeholder="📋">
+                <input type="text" id="new-template-icon" class="form-input" required value="📋" maxlength="4"
+                  style="text-align: center; font-size: 1.25rem;" placeholder="📋">
               </div>
             </div>
 
             <div class="form-group" style="margin-bottom: 0; margin-top: 1rem;">
               <label class="form-label" for="new-template-description">Description</label>
-              <input type="text" id="new-template-description" class="form-input" placeholder="Brief explanation of this template">
+              <input type="text" id="new-template-description" class="form-input"
+                placeholder="Brief explanation of this template">
             </div>
           </div>
 
@@ -177,7 +185,7 @@
                 <i data-lucide="plus"></i> Add Field
               </button>
             </div>
-            
+
             <div id="modal-fields-list" class="modal-fields-list">
               <!-- Dynamically populated field editors -->
             </div>
@@ -212,4 +220,5 @@
   <!-- Javascript Logic -->
   <script src="app.js"></script>
 </body>
+
 </html>
