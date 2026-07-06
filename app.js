@@ -335,6 +335,46 @@ const DEFAULT_TEMPLATES =
         { "id": "can-handled-by", "label": "Can be handled by", "type": "text", "placeholder": "Role minimal yang bisa menangani ini...", "defaultValue": "", "required": true },
         { "id": "runbook-needed", "label": "Runbook Needed", "type": "select", "options": ["Yes", "No"], "defaultValue": "Yes", "required": true }
       ]
+    },
+    {
+      "id": "7.21-escalation-to-developer",
+      "name": "Escalation ke Developer",
+      "icon": "👨‍💻",
+      "description": "Formulir eskalasi kendala teknis, bug aplikasi, atau issue kueri database yang membutuhkan penanganan langsung dari divisi Developer.",
+      "fields": [
+        { "id": "ticket-id", "label": "Ticket ID", "type": "text", "placeholder": "TCK-XXXXXXXX", "defaultValue": "", "required": true },
+        { "id": "severity", "label": "Severity Level", "type": "select", "options": ["High (SLA < 2 Jam)", "Medium (SLA < 8 Jam)", "Low (SLA Non-Urgent)"], "defaultValue": "Medium", "required": true },
+        { "id": "customer", "label": "Customer / Klien", "type": "text", "placeholder": "Nama Perusahaan / Client", "defaultValue": "", "required": true },
+        { "id": "environment", "label": "Environment", "type": "select", "options": ["Production", "Staging", "Development"], "defaultValue": "Production", "required": true },
+        { "id": "impacted-component", "label": "Komponen Terdampak", "type": "text", "placeholder": "e.g. API Gateway, Auth Service, Frontend App, Cron Job", "defaultValue": "", "required": true },
+        { "id": "issue-summary", "label": "Ringkasan Masalah", "type": "textarea", "placeholder": "Jelaskan kendala atau error yang terjadi secara singkat...", "defaultValue": "", "required": true },
+        { "id": "steps-to-reproduce", "label": "Langkah Reproduksi Error", "type": "textarea", "placeholder": "1. Akses endpoint...\n2. Masukkan payload...\n3. Muncul error response...", "defaultValue": "1. \n2. \n3. ", "required": true },
+        { "id": "technical-findings", "label": "Temuan Teknis & Log", "type": "textarea", "placeholder": "Tempel potongan log error, stack trace, status code HTTP, atau kueri database yang bermasalah di sini...", "defaultValue": "", "required": true },
+        { "id": "evidence", "label": "Evidence / Bukti", "type": "text", "placeholder": "Link / Lampiran screenshot error, response Postman, atau payload", "defaultValue": "Terlampir di ticket.", "required": true },
+        { "id": "temporary-workaround", "label": "Workaround Sementara (Jika Ada)", "type": "textarea", "placeholder": "Langkah sementara yang diambil oleh tim ops untuk memitigasi dampak ke user (misal restart service, bypass route)...", "defaultValue": "", "required": false },
+        { "id": "need-from-developer", "label": "Kebutuhan dari Developer", "type": "textarea", "placeholder": "Aksi spesifik yang diminta (misal: hotfix bug, perbaikan kueri lambat, investigasi memory leak)...", "defaultValue": "", "required": true },
+        { "id": "escalated-by", "label": "Eskalator (PIC Ops)", "type": "text", "placeholder": "Nama & Role PIC internal (e.g. COE-II / Senior COE)", "defaultValue": "", "required": true }
+      ]
+    },
+    {
+      "id": "7.22-infrastructure-failure",
+      "name": "Infrastructure Failure",
+      "icon": " infrastructure-failure",
+      "description": "Formulir eskalasi kendala teknis, bug aplikasi, atau issue kueri database yang membutuhkan penanganan langsung dari divisi Developer.",
+      "fields": [
+        { "id": "ticket-id", "label": "Ticket ID", "type": "text", "placeholder": "TCK-XXXXXXXX", "defaultValue": "", "required": true },
+        { "id": "severity", "label": "Severity Level", "type": "select", "options": ["High (SLA < 2 Jam)", "Medium (SLA < 8 Jam)", "Low (SLA Non-Urgent)"], "defaultValue": "Medium", "required": true },
+        { "id": "customer", "label": "Customer / Klien", "type": "text", "placeholder": "Nama Perusahaan / Client", "defaultValue": "", "required": true },
+        { "id": "environment", "label": "Environment", "type": "select", "options": ["Production", "Staging", "Development"], "defaultValue": "Production", "required": true },
+        { "id": "impacted-component", "label": "Komponen Terdampak", "type": "text", "placeholder": "e.g. API Gateway, Auth Service, Frontend App, Cron Job", "defaultValue": "", "required": true },
+        { "id": "issue-summary", "label": "Ringkasan Masalah", "type": "textarea", "placeholder": "Jelaskan kendala atau error yang terjadi secara singkat...", "defaultValue": "", "required": true },
+        { "id": "steps-to-reproduce", "label": "Langkah Reproduksi Error", "type": "textarea", "placeholder": "1. Akses endpoint...\n2. Masukkan payload...\n3. Muncul error response...", "defaultValue": "1. \n2. \n3. ", "required": true },
+        { "id": "technical-findings", "label": "Temuan Teknis & Log", "type": "textarea", "placeholder": "Tempel potongan log error, stack trace, status code HTTP, atau kueri database yang bermasalah di sini...", "defaultValue": "", "required": true },
+        { "id": "evidence", "label": "Evidence / Bukti", "type": "text", "placeholder": "Link / Lampiran screenshot error, response Postman, atau payload", "defaultValue": "Terlampir di ticket.", "required": true },
+        { "id": "temporary-workaround", "label": "Workaround Sementara (Jika Ada)", "type": "textarea", "placeholder": "Langkah sementara yang diambil oleh tim ops untuk memitigasi dampak ke user (misal restart service, bypass route)...", "defaultValue": "", "required": false },
+        { "id": "need-from-developer", "label": "Kebutuhan dari Developer", "type": "textarea", "placeholder": "Aksi spesifik yang diminta (misal: hotfix bug, perbaikan kueri lambat, investigasi memory leak)...", "defaultValue": "", "required": true },
+        { "id": "escalated-by", "label": "Eskalator (PIC Ops)", "type": "text", "placeholder": "Nama & Role PIC internal (e.g. COE-II / Senior COE)", "defaultValue": "", "required": true }
+      ]
     }
   ]
 
