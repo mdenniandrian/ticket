@@ -355,6 +355,25 @@ const DEFAULT_TEMPLATES =
         { "id": "need-from-developer", "label": "Kebutuhan dari Developer", "type": "textarea", "placeholder": "Aksi spesifik yang diminta (misal: hotfix bug, perbaikan kueri lambat, investigasi memory leak)...", "defaultValue": "", "required": true },
         { "id": "escalated-by", "label": "Eskalator (PIC Ops)", "type": "text", "placeholder": "Nama & Role PIC internal (e.g. COE-II / Senior COE)", "defaultValue": "", "required": true }
       ]
+    },
+    {
+      "id": "7.22-service-provisioning",
+      "name": "Provisioning Layanan",
+      "icon": "🚀",
+      "description": "Formulir instruksi kerja untuk pembuatan, alokasi resource, dan konfigurasi awal layanan baru (VM, Dedicated Server, Network, atau Storage) sesuai permintaan pelanggan.",
+      "fields": [
+        { "id": "ticket-id", "label": "Ticket ID", "type": "text", "placeholder": "TCK-XXXXXXXX", "defaultValue": "", "required": true },
+        { "id": "customer", "label": "Customer / Instansi", "type": "text", "placeholder": "PT Contoh Digital", "defaultValue": "", "required": true },
+        { "id": "service-type", "label": "Jenis Layanan", "type": "select", "options": ["Virtual Private Server (VPS)", "Dedicated Server", "Object Storage", "Custom Networking (VPC/Tunnel)"], "defaultValue": "Virtual Private Server (VPS)", "required": true },
+        { "id": "package-spec", "label": "Spesifikasi Paket / Resource", "type": "textarea", "placeholder": "e.g. \n- CPU: 4 vCPU\n- RAM: 8 GB\n- Storage: 100 GB SSD NVMe\n- OS: Ubuntu 24.04 LTS", "defaultValue": "- CPU: \n- RAM: \n- Storage: \n- OS: ", "required": true },
+        { "id": "network-allocation", "label": "Alokasi Jaringan & IP", "type": "textarea", "placeholder": "e.g. \n- Public IP Needed: 1\n- Bandwidth Cap: 100 Mbps Shared\n- Open Ports: 22, 80, 443", "defaultValue": "- Public IP Needed: \n- Bandwidth Cap: \n- Open Ports: ", "required": true },
+        { "id": "target-node-rack", "label": "Target Node / Lokasi Rack", "type": "text", "placeholder": "e.g. MXC-NODE-15 / Rack B4 / Cluster Zone A", "defaultValue": "", "required": true },
+        { "id": "provisioning-checklist", "label": "Checklist Tahapan Eksekusi", "type": "textarea", "placeholder": "1. Alokasi IP di IPAM\n2. Create VM/Provisioning Server di Hypervisor\n3. Konfigurasi awal OS & SSH Key\n4. Setup rule firewall dasar\n5. Verifikasi konektivitas & bandwidth", "defaultValue": "1. \n2. \n3. \n4. \n5. ", "required": true },
+        { "id": "credentials-output", "label": "Informasi Akses Awal (Output)", "type": "textarea", "placeholder": "Diisi setelah provisioning selesai (IP Address, Default Username, Port SSH)...", "defaultValue": "", "required": false },
+        { "id": "evidence", "label": "Evidence / Bukti Provisioning", "type": "text", "placeholder": "Screenshot console VM aktif / output kueri provisioning", "defaultValue": "Foto/Screenshot terlampir.", "required": true },
+        { "id": "provisioned-by", "label": "Eksekutor (PIC Teknis)", "type": "text", "placeholder": "e.g. COE-II: Dimas / Infrastructure Technician", "defaultValue": "", "required": true },
+        { "id": "target-completion", "label": "Target Batas Waktu (SLA)", "type": "text", "placeholder": "DD/MM/YYYY HH:MM WIB", "defaultValue": "", "required": true }
+      ]
     }
   ]
 
