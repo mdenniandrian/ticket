@@ -374,6 +374,25 @@ const DEFAULT_TEMPLATES =
         { "id": "provisioned-by", "label": "Eksekutor (PIC Teknis)", "type": "text", "placeholder": "e.g. COE-II: Dimas / Infrastructure Technician", "defaultValue": "", "required": true },
         { "id": "target-completion", "label": "Target Batas Waktu (SLA)", "type": "text", "placeholder": "DD/MM/YYYY HH:MM WIB", "defaultValue": "", "required": true }
       ]
+    },
+    {
+      "id": "7.23-colocation-dismantle",
+      "name": "Dismantle Colocation",
+      "icon": "🔌",
+      "description": "Formulir dekomisi fisik untuk pencabutan perangkat server milik pelanggan dari ruang rak, pemutusan jalur uplink, daya listrik, dan proses serah terima pengembalian barang.",
+      "fields": [
+        { "id": "ticket-id", "label": "Ticket ID", "type": "text", "placeholder": "TCK-XXXXXXXX", "defaultValue": "", "required": true },
+        { "id": "customer", "label": "Customer / Instansi", "type": "text", "placeholder": "PT Contoh Digital", "defaultValue": "", "required": true },
+        { "id": "hardware-info", "label": "Informasi Perangkat yang Dicabut", "type": "textarea", "placeholder": "e.g. \n- Brand/Model: Dell PowerEdge R740\n- Dimensi: 2U Rackmount\n- Serial Number: XXXXXXX", "defaultValue": "- Brand/Model: \n- Dimensi: \n- Serial Number: ", "required": true },
+        { "id": "rack-space-origin", "label": "Lokasi Asal Rak Server", "type": "text", "placeholder": "e.g. Datacenter Zone A / Rack B3 / Unit U14-U15", "defaultValue": "", "required": true },
+        { "id": "pre-dismantle-verification", "label": "Validasi Pra-Pencabutan Fisik", "type": "textarea", "placeholder": "- Surat jalan / Approval serah terima barang: (Ada / Siap)\n- Konfirmasi shutdown OS dari sisi pelanggan: (Sudah shutdown / OK)\n- Status Billing: (Sudah diproses stop billing)", "defaultValue": "- Surat jalan / Approval serah terima barang: \n- Konfirmasi shutdown OS dari sisi pelanggan: \n- Status Billing: ", "required": true },
+        { "id": "dismantle-action-checklist", "label": "Checklist Pembersihan & Pencabutan Fisik", "type": "textarea", "placeholder": "1. Cabut kabel power Path A dan Path B dari PDU\n2. Cabut kabel jaringan (Uplink/UTP/Fiber) dan bersihkan labeling\n3. Un-mounting server dari unit rak\n4. Lepas rail kit server dari tiang rak\n5. Pindahkan server ke ruang transit / storage logistik untuk serah terima", "defaultValue": "1. \n2. \n3. \n4. \n5. ", "required": true },
+        { "id": "resource-release-checklist", "label": "Checklist Pengosongan Resource Sistem", "type": "textarea", "placeholder": "1. Shutdown / matikan port switch jaringan (Port Admin Down)\n2. Hapus alokasi IP Public / Private dari pool IPAM\n3. Hapus status penggunaan slot unit rak pada sistem inventory/CMDB", "defaultValue": "1. \n2. \n3. ", "required": true },
+        { "id": "handover-note", "label": "Catatan Serah Terima Barang", "type": "textarea", "placeholder": "Diisi nama PIC kurir / pelanggan yang mengambil barang, nomor KTP/ID, serta nomor surat jalan...", "defaultValue": "- Nama Penerima Barang: \n- Kontak / No. ID: \n- No. Surat Jalan: ", "required": false },
+        { "id": "evidence", "label": "Evidence Pencabutan & Serah Terima", "type": "text", "placeholder": "Link / Lampiran foto slot rak yang telah kosong bersih dan foto serah terima unit server", "defaultValue": "Foto rak kosong dan dokumentasi serah terima terlampir.", "required": true },
+        { "id": "performed-by", "label": "Eksekutor (Infrastructure Technician)", "type": "text", "placeholder": "Nama Teknisi Datacenter yang mencabut unit", "defaultValue": "", "required": true },
+        { "id": "completed-at", "label": "Waktu Selesai Eksekusi Fisik", "type": "text", "placeholder": "DD/MM/YYYY HH:MM WIB", "defaultValue": "", "required": true }
+      ]
     }
   ]
 
